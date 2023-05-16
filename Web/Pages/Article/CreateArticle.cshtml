@@ -1,0 +1,16 @@
+﻿@page
+@model Web.Pages.Post.CreateArticleModel
+@{
+}
+<form method="post">
+    <div class="text-danger" asp-validation-summary="All"></div>
+    <div class="form-group">
+        <label asp-for="PostModelDto.Title">Title:</label>
+        <input asp-for="PostModelDto.Title" type="text" class="form-control" placeholder="Title">
+    </div>
+    <div class="form-group">
+        <label asp-for="PostModelDto.Body" class="mb-1">Text:</label>
+        <textarea asp-for="PostModelDto.Body" class="form-control" rows="16"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary mt-2">Create</button>
+</form>

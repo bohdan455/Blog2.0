@@ -1,0 +1,22 @@
+﻿@page
+@model Web.Pages.Account.LoginModel
+@{
+}
+<h1>Login</h1>
+<form method="post">
+    <div class="text-danger" asp-validation-summary="All"></div>
+    <div class="form-group">
+        <label asp-for="LoginModelDto.Username"></label>
+        <input asp-for = "LoginModelDto.Username" type="text" class="form-control" placeholder="Enter username">
+    </div>
+    <div class="form-group">
+        <label asp-for="LoginModelDto.Password">Password</label>
+        <input asp-for ="LoginModelDto.Password" type="password" class="form-control" placeholder="Password">
+    </div>
+    <div class="form-check">
+        <input asp-for="LoginModelDto.RememberMe" type="checkbox" class="form-check-input">
+        <label asp-for="LoginModelDto.RememberMe" class="form-check-label">Remember me</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+    <a asp-page="/account/registration" class="btn btn-link">Register</a>
+</form>

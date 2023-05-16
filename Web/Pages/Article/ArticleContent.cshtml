@@ -1,0 +1,10 @@
+﻿@page "{id?}"
+@model Web.Pages.Article.ArticleContentModel
+@{
+}
+<h1>@Model.ArticleModel.Title</h1>
+@Model.ArticleModel.Body
+<form class="mt-4" method="post">
+    <input class="btn btn-primary" type="submit" value="Like" />
+</form>
+<span>Likes: @Model.Likes</span>
