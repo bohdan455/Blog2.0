@@ -1,5 +1,6 @@
 using DataAccess;
 using DataAccess.BlogData;
+using DataAccess.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 using Web.Identity;
@@ -22,6 +23,7 @@ builder.Services.AddDbContext<DataContext>(options =>
     options.UseSqlServer(configurationString);
 });
 builder.Services.AddTransient<ArticleAccess>();
+builder.Services.AddTransient<LikeAccess>();
 
 // Add identity
 builder.Services.AddIdentitySettings();

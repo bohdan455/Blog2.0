@@ -6,35 +6,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccess.BlogData
+namespace DataAccess.DataAccess
 {
-    public class ArticleAccess
+    public class LikeAccess
     {
         private readonly DataContext _context;
 
-        public ArticleAccess(DataContext context)
+        public LikeAccess(DataContext context)
         {
             _context = context;
-        }
-        /// <summary>
-        /// Create post using username of author
-        /// </summary>
-        /// <param name="username">Username of author</param>
-        /// <param name="title">Title of article</param>
-        /// <param name="body">Context of article</param>
-        /// <param name="imageUrl">Url of image,</param>
-        public async Task CreatePostAsync(string username, string title,string body,string imageUrl = null)
-        {
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.UserName == username);
-            var article = new ArticleModel
-            {
-                Author = user,
-                Title = title,
-                Body = body,
-                ImageUrl = imageUrl,
-            };
-            _context.Articles.Add(article);
-            await _context.SaveChangesAsync();
         }
         /// <summary>
         /// Like post using its id
@@ -60,7 +40,8 @@ namespace DataAccess.BlogData
                 await _context.Likes.AddAsync(newLike);
 
             }
-            else{
+            else
+            {
                 _context.Likes.Remove(like);
             }
             await _context.SaveChangesAsync();
@@ -77,14 +58,6 @@ namespace DataAccess.BlogData
                 .Include(l => l.Article)
                 .Where(l => l.Article.Id == id).CountAsync();
             return like;
-        }
-        public IEnumerable<ArticleModel> GetAllArticles()
-        {
-            return _context.Articles.Include(a => a.Author);
-        }
-        public async Task<ArticleModel> GetArticleByIdAsync(int id)
-        {
-            return await _context.Articles.FirstOrDefaultAsync(p => p.Id == id);
         }
     }
 }

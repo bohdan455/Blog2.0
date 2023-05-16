@@ -1,4 +1,5 @@
 using DataAccess.BlogData;
+using DataAccess.DataAccess;
 using DataAccess.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -10,10 +11,12 @@ namespace Web.Pages.Article
     public class ArticleContentModel : PageModel
     {
         private readonly ArticleAccess _articleAccess;
+        private readonly LikeAccess _likeAccess;
 
-        public ArticleContentModel(ArticleAccess articleAccess)
+        public ArticleContentModel(ArticleAccess articleAccess, LikeAccess likeAccess)
         {
             _articleAccess = articleAccess;
+            _likeAccess = likeAccess;
         }
         [BindProperty]
         public ArticleModel ArticleModel { get; set; }
@@ -26,14 +29,14 @@ namespace Web.Pages.Article
             ArticleModel = await _articleAccess.GetArticleByIdAsync(id);
             if (ArticleModel is null) return NotFound();
             Id = id;
-            Likes = await _articleAccess.CountLikesAsync(id);
+            Likes = await _likeAccess.CountLikesAsync(id);
             return Page();
         }
         public async Task<IActionResult> OnPostAsync(int id)
         {
-            if(User.Identity.Name is null) return BadRequest();
+            if(User?.Identity?.Name is null) return BadRequest();
 
-            await _articleAccess.LikePostAsync(id,User.Identity.Name);
+            await _likeAccess.LikePostAsync(id,User.Identity.Name);
             return RedirectToPage("/article/ArticleContent",new {id});
         }
     }
