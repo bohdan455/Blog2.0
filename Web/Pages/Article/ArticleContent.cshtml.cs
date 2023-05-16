@@ -1,10 +1,12 @@
 using DataAccess.BlogData;
 using DataAccess.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Web.Pages.Article
 {
+    [Authorize]
     public class ArticleContentModel : PageModel
     {
         private readonly ArticleAccess _articleAccess;

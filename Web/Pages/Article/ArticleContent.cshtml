@@ -2,6 +2,10 @@
 @model Web.Pages.Article.ArticleContentModel
 @{
 }
+@if (!string.IsNullOrEmpty(Model.ArticleModel.ImageUrl))
+{
+    <img src="@Model.ArticleModel.ImageUrl"/>
+}
 <h1>@Model.ArticleModel.Title</h1>
 @Model.ArticleModel.Body
 <form class="mt-4" method="post">

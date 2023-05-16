@@ -5,10 +5,12 @@ namespace Web.Model
     public class PostModelDto
     {
         [Required]
-        [MaxLength(400)]
+        [StringLength(400)]
         public string Title { get; set; } = string.Empty;
         [Required]
-        [MaxLength(4000)]
+        [StringLength(4000)]
         public string Body { get; set; } = string.Empty;
+        [MaxLength(400)]
+        public string? ImageUrl { get; set; }
     }
 }

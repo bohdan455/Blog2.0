@@ -22,14 +22,16 @@ namespace DataAccess.BlogData
         /// <param name="username">Username of author</param>
         /// <param name="title">Title of article</param>
         /// <param name="body">Context of article</param>
-        public async Task CreatePostAsync(string username, string title,string body)
+        /// <param name="imageUrl">Url of image,</param>
+        public async Task CreatePostAsync(string username, string title,string body,string imageUrl = null)
         {
             var user = await _context.Users.FirstOrDefaultAsync(u => u.UserName == username);
             var article = new ArticleModel
             {
                 Author = user,
                 Title = title,
-                Body = body
+                Body = body,
+                ImageUrl = imageUrl,
             };
             _context.Articles.Add(article);
             await _context.SaveChangesAsync();

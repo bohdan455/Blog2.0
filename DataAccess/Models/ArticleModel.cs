@@ -18,6 +18,8 @@ namespace DataAccess.Models
         [Required]
         [MaxLength(4000)]
         public string Body { get; set; }
+        [MaxLength(400)]
+        public string ImageUrl { get; set; }
         [Required]
         public IdentityUser Author { get; set; }
     }

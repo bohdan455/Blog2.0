@@ -24,7 +24,7 @@ namespace Web.Pages.Post
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid) return Page();
-            await _articleAccess.CreatePostAsync(User.Identity.Name,PostModelDto.Title,PostModelDto.Body);
+            await _articleAccess.CreatePostAsync(User.Identity.Name,PostModelDto.Title,PostModelDto.Body,PostModelDto.ImageUrl);
             return RedirectToPage("/index");
         }
     }
