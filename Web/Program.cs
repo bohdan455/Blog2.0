@@ -2,6 +2,7 @@ using DataAccess;
 using DataAccess.BlogData;
 using DataAccess.DataAccess;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
 using Serilog;
 using Web.Identity;
 
@@ -24,6 +25,7 @@ builder.Services.AddDbContext<DataContext>(options =>
 });
 builder.Services.AddTransient<ArticleAccess>();
 builder.Services.AddTransient<LikeAccess>();
+builder.Services.AddTransient<UserAccess>();
 
 // Add identity
 builder.Services.AddIdentitySettings();

@@ -19,15 +19,15 @@ namespace Web.Pages.Article
             _likeAccess = likeAccess;
         }
         [BindProperty]
-        public ArticleModel ArticleModel { get; set; }
+        public ArticleModel Article { get; set; }
         [BindProperty]
         public int Id { get; set; }
         [BindProperty]
         public int Likes { get; set; }
         public async Task<IActionResult> OnGetAsync(int id)
         {
-            ArticleModel = await _articleAccess.GetArticleByIdAsync(id);
-            if (ArticleModel is null) return NotFound();
+            Article = await _articleAccess.GetArticleByIdAsync(id);
+            if (Article is null) return NotFound();
             Id = id;
             Likes = await _likeAccess.CountLikesAsync(id);
             return Page();

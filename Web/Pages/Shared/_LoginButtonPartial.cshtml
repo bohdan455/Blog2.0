@@ -5,7 +5,7 @@
 }
 @if(User.Identity.IsAuthenticated){
     <form method="post" asp-page="/account/logout">
-        Welcome @@@User.Identity.Name
+        Welcome <a asp-page="/account/accountpage" asp-route-username = "@User.Identity.Name"> @@@User.Identity.Name </a>
         <input type="submit" class = "btn btn-link" value="Logout" />
     </form>
 }

@@ -2,13 +2,14 @@
 @model Web.Pages.Article.ArticleContentModel
 @{
 }
-@if (!string.IsNullOrEmpty(Model.ArticleModel.ImageUrl))
+@if (!string.IsNullOrEmpty(Model.Article.ImageUrl))
 {
-    <img src="@Model.ArticleModel.ImageUrl"/>
+    <img src="@Model.Article.ImageUrl" />
 }
-<h1>@Model.ArticleModel.Title</h1>
-@Model.ArticleModel.Body
+<h1>@Model.Article.Title</h1>
+@Model.Article.Body
 <form class="mt-4" method="post">
     <input class="btn btn-primary" type="submit" value="Like" />
 </form>
 <span>Likes: @Model.Likes</span>
+<a asp-page="/account/accountpage" asp-route-username="@Model.Article.Author.UserName"> @@@Model.Article.Author.UserName </a>

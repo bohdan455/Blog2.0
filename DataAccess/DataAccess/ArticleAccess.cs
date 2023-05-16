@@ -40,6 +40,10 @@ namespace DataAccess.BlogData
         {
             return _context.Articles.Include(a => a.Author);
         }
+        public IEnumerable<ArticleModel> GetAllArticlesWrittenByUser(string username)
+        {
+            return _context.Articles.Include(a => a.Author).Where( a => a.Author.UserName == username);
+        }
         /// <summary>
         /// Get article using its id
         /// </summary>
@@ -47,7 +51,7 @@ namespace DataAccess.BlogData
         /// <returns></returns>
         public async Task<ArticleModel> GetArticleByIdAsync(int id)
         {
-            return await _context.Articles.FirstOrDefaultAsync(p => p.Id == id);
+            return await _context.Articles.Include(a => a.Author).FirstOrDefaultAsync(p => p.Id == id);
         }
     }
 }
